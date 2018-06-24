@@ -13,7 +13,8 @@ use SocialNews\Framework\Csrf\TokenStorage;
 use SocialNews\Framework\Csrf\SymfonySessionTokenStorage;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
-
+use SocialNews\Submission\Domain\SubmissionRepository;
+use SocialNews\Submission\Infrastructure\DbalSubmissionRepository;
 
 $injector = new Injector();
 
@@ -45,5 +46,7 @@ $injector->share(SubmissionsQuery::class);
 $injector->alias(TokenStorage::class, SymfonySessionTokenStorage::class);
 
 $injector->alias(SessionInterface::class, Session::class);
+
+$injector->alias(SubmissionRepository::class, DbalSubmissionRepository::class);
 
 return $injector;

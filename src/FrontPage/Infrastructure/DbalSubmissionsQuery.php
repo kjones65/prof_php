@@ -30,7 +30,7 @@ final class DbalSubmissionsQuery implements SubmissionsQuery
 
         $submissions = [];
         foreach ($rows as $row) {
-            $submissions[] = new Submissions($row['url'], $row['title']);
+            $submissions[] = new Submission($row['url'], $row['title']);
         }
         return $submissions;
     }
