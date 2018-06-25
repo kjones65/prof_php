@@ -33,5 +33,6 @@ final class Migration201806230108
         $table->addColumn('title', Type::STRING);
         $table->addColumn('url', Type::STRING);
         $table->addColumn('creation_date', Type::DATETIME);
+        $table->addColumn('author_user_id', Type::GUID);
     }
 }

@@ -19,6 +19,8 @@ use SocialNews\User\Domain\UserRepository;
 use SocialNews\User\Infrastructure\DbalUserRepository;
 use SocialNews\User\Application\NicknameTakenQuery;
 use SocialNews\User\Infrastructure\DbalNicknameTakenQuery;
+use SocialNews\Framework\Rbac\User;
+use SocialNews\Framework\Rbac\SymfonySessionCurrentUserFactory;
 
 $injector = new Injector();
 
@@ -32,6 +34,12 @@ $injector->delegate(
         return $factory->create();
     }
 );
+
+$injector->delegate(User::class, function () use ($injector): User {
+    $factory = $injector->make(SymfonySessionCurrentUserFactory::class);
+    return $factory->create();
+});
+
 $injector->define(
     DatabaseUrl::class,
     [':url' => 'sqlite:///' . ROOT_DIR . '/storage/db.sqlite3']
